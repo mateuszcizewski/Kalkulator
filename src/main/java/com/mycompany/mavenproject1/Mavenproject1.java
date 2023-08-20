@@ -3,10 +3,8 @@
  */
 
 package com.mycompany.mavenproject1;
-import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,130 +32,99 @@ public class Mavenproject1 {
         gbc.gridy = y;
         gbc.gridx = x;
         frame.add(button, gbc);
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                
-                switch(value){
-                    case "1":
-                    case "2":
-                    case "3":
-                    case "4":
-                    case "5":
-                    case "6":
-                    case "7":
-                    case "8":
-                    case "9":
-                    case "0":    
-                        currentValue = displayField.getText();
-                            if(currentValue.equals("0") || currentValue.equals(" "))
-                                {
-                                    displayField.setText(value);
-                                }
-                                else
-                                {
-                                    currentValue = currentValue + value;
-                                    displayField.setText(currentValue);  
-                                }
-                        break;
-                    
-                    case "-":
-                        if(firstNumber.equals(" "))
-                        {
-                           firstNumber = displayField.getText();
-                           currentValue = " ";
-                           displayField.setText(currentValue); 
-                           operation = "sub";
-                        }else if(!firstNumber.equals(" ") && secondNumber.equals(" "))
-                        {
-                            //double sub?? Do i just force result and sub again??
-                            
-                            
-                        }
+        button.addActionListener((ActionEvent e) -> {
+            switch(value){
+                case "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" -> {
+                    currentValue = displayField.getText();
+                    if(currentValue.equals("0") || currentValue.equals(" "))
+                    {
+                        displayField.setText(value);
+                    }
+                    else
+                    {
+                        currentValue = currentValue + value;
+                        displayField.setText(currentValue);
+                    }
+                }
+                case "-" -> {
+                    if(firstNumber.equals(" "))
+                    {
+                        firstNumber = displayField.getText();
+                        currentValue = " ";
+                        displayField.setText(currentValue);
+                        operation = "sub";
+                    }else if(!firstNumber.equals(" ") && secondNumber.equals(" "))
+                    {
+                        //double sub?? Do i just force result and sub again??
                         
-                        break;
                         
-                    case "+":
-                        if(firstNumber.equals(" "))
-                        {
-                           firstNumber = displayField.getText();
-                           currentValue = " ";
-                           displayField.setText(currentValue); 
-                           operation = "add";
-                        }
-                        
-                        break;
-                        
-                    case "/":
-                        if(firstNumber.equals(" "))
-                        {
-                           firstNumber = displayField.getText();
-                           currentValue = " ";
-                           displayField.setText(currentValue); 
-                           operation = "div";
-                        }
-                        
-                        break;
-                        
-                    case "*":
-                        if(firstNumber.equals(" "))
-                        {
-                           firstNumber = displayField.getText();
-                           currentValue = " ";
-                           displayField.setText(currentValue); 
-                           operation = "mul";
-                        }
-                        
-                        break;
-                        
-                    case "C":
-                        currentValue = "0";
-                        displayField.setText(currentValue); 
-                        firstNumber = " ";
-                        secondNumber = " ";
-                        break;
-                        
-                    case "=":
-                        secondNumber = displayField.getText();
-                        if( !firstNumber.equals(" ") && !secondNumber.equals(" ") )
-                        {
-                            switch(operation){
-                                case "sub":
-                                    result = Integer.parseInt(firstNumber) - Integer.parseInt(secondNumber);
-                                    displayField.setText(String.valueOf(result));
-                                    firstNumber = " ";
-                                    secondNumber = " ";
-                                    break;
-                                case "add":
-                                    result = Integer.parseInt(firstNumber) + Integer.parseInt(secondNumber);
-                                    displayField.setText(String.valueOf(result));
-                                    firstNumber = " ";
-                                    secondNumber = " ";
-                                    break;
-                                case "div":
-                                    result = Integer.parseInt(firstNumber) / Integer.parseInt(secondNumber);
-                                    displayField.setText(String.valueOf(result));
-                                    firstNumber = " ";
-                                    secondNumber = " ";
-                                    break;
-                                case "mul":
-                                    result = Integer.parseInt(firstNumber) * Integer.parseInt(secondNumber);
-                                    displayField.setText(String.valueOf(result));
-                                    firstNumber = " ";
-                                    secondNumber = " ";
-                                    break;
+                    }
+                }
+                case "+" -> {
+                    if(firstNumber.equals(" "))
+                    {
+                        firstNumber = displayField.getText();
+                        currentValue = " ";
+                        displayField.setText(currentValue);
+                        operation = "add";
+                    }
+                }
+                case "/" -> {
+                    if(firstNumber.equals(" "))
+                    {
+                        firstNumber = displayField.getText();
+                        currentValue = " ";
+                        displayField.setText(currentValue);
+                        operation = "div";
+                    }
+                }
+                case "*" -> {
+                    if(firstNumber.equals(" "))
+                    {
+                        firstNumber = displayField.getText();
+                        currentValue = " ";
+                        displayField.setText(currentValue);
+                        operation = "mul";
+                    }
+                }
+                case "C" -> {
+                    currentValue = "0";
+                    displayField.setText(currentValue);
+                    firstNumber = " ";
+                    secondNumber = " ";
+                }
+                case "=" -> {
+                    secondNumber = displayField.getText();
+                    if( !firstNumber.equals(" ") && !secondNumber.equals(" ") )
+                    {
+                        switch(operation){
+                            case "sub" -> {
+                                result = Integer.parseInt(firstNumber) - Integer.parseInt(secondNumber);
+                                displayField.setText(String.valueOf(result));
+                                firstNumber = " ";
+                                secondNumber = " ";
+                            }
+                            case "add" -> {
+                                result = Integer.parseInt(firstNumber) + Integer.parseInt(secondNumber);
+                                displayField.setText(String.valueOf(result));
+                                firstNumber = " ";
+                                secondNumber = " ";
+                            }
+                            case "div" -> {
+                                result = Integer.parseInt(firstNumber) / Integer.parseInt(secondNumber);
+                                displayField.setText(String.valueOf(result));
+                                firstNumber = " ";
+                                secondNumber = " ";
+                            }
+                            case "mul" -> {
+                                result = Integer.parseInt(firstNumber) * Integer.parseInt(secondNumber);
+                                displayField.setText(String.valueOf(result));
+                                firstNumber = " ";
+                                secondNumber = " ";
                             }
                         }
-                        
-                        
-                        
-                        break;
+                    }
                 }
-                
-                
-                
-                
-                
             }
         });
     }
